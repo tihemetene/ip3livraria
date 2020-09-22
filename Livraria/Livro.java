@@ -2,10 +2,23 @@ package Livraria;
 
 public class Livro {
     private String ISBN;
+<<<<<<< HEAD
     private String titulo, editora, descricao;
     private int numero_Paginas;
 
 
+=======
+    private String titulo, editora, descricao, teste;
+    private int numero_Paginas;
+
+    public String getTeste() {
+        return teste;
+    }
+
+    public void setTeste(String teste) {
+        this.teste = teste;
+    }
+>>>>>>> Adicionado a classe Livro.java
 
     public String getISBN() {
         return ISBN;
@@ -55,7 +68,11 @@ public class Livro {
                 ", titulo='" + titulo + '\'' +
                 ", editora='" + editora + '\'' +
                 ", descricao='" + descricao + '\'' +
+<<<<<<< HEAD
                 ", numero_Paginas=" + numero_Paginas +
+=======
+                ", numero_Paginas=123123" + numero_Paginas +
+>>>>>>> Adicionado a classe Livro.java
                 '}';
     }
 }

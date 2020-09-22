@@ -1,5 +1,6 @@
-package livraria;
+package Livraria;
 import java.util.Scanner;
+
 public class Livraria {
 
     public static void main(String[] args) {

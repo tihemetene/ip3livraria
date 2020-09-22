@@ -1,5 +1,6 @@
-package livraria;
+package Livraria;
 import java.util.Scanner;
+
 public class Catalogo {
     private Produtos[] produtos;
     private int total;

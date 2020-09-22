@@ -1,4 +1,4 @@
-package livraria;
+package Livraria;
 
 
 public class Produtos {
@@ -8,25 +8,38 @@ public class Produtos {
     private int qtd;
     
     public Produtos(String cod, String titulo){
-        this.cod = cod;
-        this.titulo = titulo;
+
+        if (cod == null ) {
+            this.cod = "0";
+        } else {
+            this.cod = cod;
+        }
+
+        if (titulo == null ) {
+            this.titulo = "sem titulo";
+        } else {
+            this.titulo = titulo;
+        }
     }
-    
-   
+
     public String getCod(){
+
         return cod;
     }
-  
     public String getNome(){
+
         return titulo;
+    }
+    public double getVolume()
+    {
+        return volume;
+
     }
     
     public void setVolume(int v){
         this.volume = v;
     }
-    public double getVolume(){
-        return volume;
-    }
+
     
     public void setQtd(int q){
         qtd = q;

@@ -6,6 +6,9 @@ public class Livro {
     private int numero_Paginas;
 
 
+    public void test(String a){]
+        this.test = a;
+    }
 
     public String getISBN() {
         return ISBN;

@@ -2,6 +2,7 @@ package Livraria;
 import java.util.Scanner;
 
 public class Catalogo {
+
     private Produtos[] produtos;
     private int total;
     private boolean estaOrdenado;
@@ -17,31 +18,41 @@ public class Catalogo {
         int volume;
         pos = consultar(cod);
         if (pos == -1) {
-            System.out.println("Informe o título do livro: ");
+            System.out.println("==> Informe o título do livro: ");
             titulo = in.nextLine();
             produtos[total] = new Produtos(cod, titulo);
-            System.out.println("Informe o volume do livro: ");
+            System.out.println("==> Informe o volume do livro: ");
             volume = in.nextInt();
             produtos[total].setVolume(volume);
-            System.out.println("Informe a quantidade em estoque: ");
+            System.out.println("==> Informe a quantidade em estoque: ");
             qtd = in.nextInt();
             produtos[total].setQtd(qtd);
             total++;
             estaOrdenado = false;
-            System.out.println("registro efetuado ");
+            System.out.println("==> registro efetuado ");
         } else {
-            System.out.println("registro não efetuado, livro já encontrado armazenado");
+            System.out.println("==> registro não efetuado, livro já encontrado armazenado");
         }
 
     }
-    //testando att
     
-    public void exibir(String cod){
-        
+    public void exibirPorCod(String cod){
+
+        int pos;
+
+        if (cod == null || cod == "0") {
+            System.out.println("==> código inválido");
+        } else {
+            System.out.println("==> Consultando..");
+            pos = consultar(cod);
+            System.out.println("==> Produto: " + produtos[pos].getNome() + " Cod: " +
+                    "" + produtos[pos].getCod() + " Encontrado.");
+        }
     }
 
     public int consultar(String cod) {
         int pos;
+
         if (estaOrdenado == true) {
             pos = buscaBinaria(cod);
         } else {
@@ -54,6 +65,7 @@ public class Catalogo {
         boolean achou = false;
         String matr;
         int i;
+
         for (i = 0; i < total; i++) {
             matr = produtos[i].getCod();
             if (matr.compareToIgnoreCase(cod) == 0) {
@@ -73,9 +85,11 @@ public class Catalogo {
         int inicio = 0, meio, fim = total -1;
         String matr;
         boolean achou = false;
+
         do {
             meio = (inicio + fim) / 2;
             matr = produtos[meio].getCod();
+
             if (matr.compareToIgnoreCase(cod)== 0) {
                 achou = true;
                 break;
@@ -87,6 +101,7 @@ public class Catalogo {
                 inicio = meio + 1;
             }
         } while (inicio <= fim);
+
         if (achou == true){
             return meio;
         }
@@ -94,11 +109,13 @@ public class Catalogo {
             return -1;
         }
     }
+
     public void exibir(){
         for(int i = 0; i < total; i++){
             System.out.println(produtos[i].toString());
         }
     }
+
     public void ordenaCod(){
         int i,j, fim = total - 1;
         String chave, m, n;

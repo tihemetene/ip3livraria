@@ -5,7 +5,6 @@ public class Carrinho {
     private double totalPagar;
     private List<Produtos> produtos;
 
-
     public Carrinho() {
         this.produtos = new ArrayList<Produto>();
     }

@@ -1,10 +1,18 @@
 package Livraria;
 
-public class Livro {
+public class Livro extends Produtos{
     private String ISBN;
     private String titulo, editora, descricao;
     private int numero_Paginas;
 
+
+    public Livro(String ISBN, String titulo, String editora, String descricao) {
+        super(cod);
+        this.ISBN = ISBN;
+        this.titulo = titulo;
+        this.editora = editora;
+        this.descricao = descricao
+    }
 
 
     public String getISBN() {

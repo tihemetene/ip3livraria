@@ -40,10 +40,6 @@ public class Produtos {
         this.volume = v;
     }
 
-    public void oi () {
-        System.out.println("teste commit");
-    }
-
     public void setQtd(int q){
         qtd = q;
     }

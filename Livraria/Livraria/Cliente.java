@@ -1,47 +1,46 @@
 package Livraria;
 
-public class Cliente extends Usuario  {
+/**
+ *
+ * @author Rodolfo
+ */
 
-    private String cpf;
-    private int id;
+public class Cliente extends Usuario {
 
-    public static final String divisor = String.format( "+-----+------------------------+---------------+%n" );
-    public static final String header = String.format( "|  %-2s | %-22s | %-13s |%n", "#", "Nome", "CPF" );
-    public static final String none = String.format( "| %-44s |%n", "Nenhum cliente encontrado" );
+    private String dataDeCadastro;
+    private String dataDeAniversario;
+    private Endereco enderecoDeEntrega;
+    private Endereco enderecoDeFaturamento;
 
-    public Cliente(int id, String nome, String senha, String cpf, int id1) {
+    public Cliente(String nome, String dataDeCadastro, String dataDeAniversario, Endereco enderecoDeEntrega,
+                   Endereco enderecoDeFaturamento) {
         super(id, nome, senha);
-        this.cpf = cpf;
-        this.id = id1;
+        this.dataDeAniversario = dataDeAniversario;
+        this.dataDeCadastro = dataDeCadastro;
+        this.enderecoDeEntrega = enderecoDeEntrega;
+        this.enderecoDeFaturamento = enderecoDeFaturamento;
     }
 
-    public String getCpf() {
-        return cpf;
+
+    public void setDataDeAniversario(String dataDeAniversario) {
+        this.dataDeAniversario = dataDeAniversario;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public String getDataDeAniversario() {
+        return dataDeAniversario;
     }
 
-    @Override
-    public int getId() {
-        return id;
+    public void setDataDeCadastro(String dataDeCadastro) {
+        this.dataDeCadastro = dataDeCadastro;
     }
 
-    @Override
-    public void setId(int id) {
-        this.id = id;
+    public String getDataDeCadastro() {
+        return dataDeCadastro;
     }
-
-    @Override
-    public String toString()
-    {
-        StringBuilder result = new StringBuilder();
-
-        result.append( String.format( "|  %-2s ", this.getId() ) );
-        result.append( String.format( "| %-22s ", this.getNome() ) );
-        result.append( String.format( "| %-13s |%n", this.getCpf() ) );
-
-        return result.toString();
+        return String.format("Nome do Cliente: %s " +
+                "\nCadastrado desde: %s " +
+                "\nData de Aniversário: %s " +
+                "\nEndereço de Entrega: %s" +
+                "\nEndereço de Faturamento: %s", nome, dataDeCadastro, dataDeAniversario, enderecoDeEntrega, enderecoDeFaturamento);
     }
 }

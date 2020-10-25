@@ -1,10 +1,15 @@
 package Livraria;
 
+/**
+ *
+ * @author Rodolfo
+ */
+
+
 public class Usuario {
+
     private String nome, senha;
     private int id;
-
-
 
     public String getSenha() {
         return senha;

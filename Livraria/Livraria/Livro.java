@@ -1,5 +1,10 @@
 package Livraria;
 
+/**
+ *
+ * @author Rodolfo
+ */
+
 public class Livro extends Produtos{
     private String ISBN;
     private String titulo, editora, descricao;

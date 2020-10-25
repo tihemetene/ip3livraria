@@ -1,5 +1,13 @@
 package Livraria;
 
+
+/**
+ *
+ * @author Rodolfo
+ */
+
+
+
 public class Funcionario extends Usuario {
 
     private double salario;

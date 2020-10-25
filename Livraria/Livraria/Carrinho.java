@@ -1,28 +1,57 @@
 package livraria;
 
+/**
+ *
+ * @author Rodolfo
+ */
 
 public class Carrinho {
-    private double totalPagar;
-    private List<Produtos> produtos;
+    private Cliente cliente;
+    private Produtos produtos;
+    private double total;
+    private int quantidade;
 
-    public Carrinho() {
-        this.produtos = new ArrayList<Produto>();
+
+    public Carrinho(Cliente cliente, Produtos produtos) {
+        this.cliente = cliente;
+        this.produtos = produtos;
+
     }
 
-    public double getTotalPagar() {
-        return totalPagar;
+    public void comprarItem(int quantidadeComprada) {
+        int quantidade = produtos.getQuantidade();
+
+        if ((quantidade - quantidadeComprada) >= 0) {
+            int novaQtd = quantidade - quantidadeComprada;
+            produtos.setQuantidade(novaQtd);
+        } else {
+            System.out.println("==> Produto " + produtos.getNome()
+                    + " sem estoque suficiente.");
+        }
     }
 
-    public void setTotalPagar(double totalPagar) {
-        this.totalPagar = totalPagar;
+    public double calculaValorTotal() {
+        return total = quantidade * produtos.getPreco();
     }
 
-    public void adicionar(Produtos p) {
-        this.produtos.add(p);
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public void remover(int pos) {
-        this.produtos.remove(pos);
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setItemCarrinho(Produtos produtos) {
+        this.produtos = produtos;
+    }
+
+    public Produtos getCarrinho() {
+        return produtos;
+    }
+
+    public String toString() {
+        return String.format("Cliente: %s" + "\nDados do Pedido: %s" + "\nTotal Pedido: %.2f", cliente.getNome(), produtos, total);
     }
 
 }

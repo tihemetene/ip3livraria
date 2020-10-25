@@ -6,7 +6,7 @@ package Livraria;
  */
 
 
-public class Usuario {
+abstract class Usuario {
 
     private String nome, senha;
     private int id;

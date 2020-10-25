@@ -1,13 +1,27 @@
 package Livraria;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Livraria {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int op;
-        String cod = " ", titulo;
+        String cod = " ", titulo, matricula;
         Catalogo Livraria = new Catalogo();
+
+        /*
+        *  itens utilizados pra teste
+        *
+        * */
+        ArrayList<Funcionario> matriculasFuncionarios = new ArrayList<Funcionario>();
+        matriculasFuncionarios.add(Funcionario.setMatricula("2020-9014"));
+        matriculasFuncionarios.add(Funcionario.setMatricula("2020-9013"));
+        matriculasFuncionarios.add(Funcionario.setMatricula("2020-9011"));
+        matriculasFuncionarios.add(Funcionario.setMatricula("2020-9010"));
+        for (Funcionario f : matriculasFuncionarios) {
+            System.out.println(f);
+        }
         do{
             exibirMenu();
             System.out.print("==> Informe a opção: ");
@@ -29,6 +43,15 @@ public class Livraria {
             }
         }while (op != 7);
     }
+
+    public static void exibirMenuInicialFuncionario() {
+        banner();
+        System.out.println("==> Digite sua matricula")
+        matricula = in.nextLine();
+
+    }
+
+
     public static void exibirMenu(){
         banner();
         System.out.println("Menu principal ");

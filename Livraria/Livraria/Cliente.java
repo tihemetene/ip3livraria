@@ -1,26 +1,35 @@
 package Livraria;
 
+
 /**
  *
  * @author Rodolfo
  */
 
 public class Cliente extends Usuario {
-
+    private String cpf;
     private String dataDeCadastro;
     private String dataDeAniversario;
-    private Endereco enderecoDeEntrega;
-    private Endereco enderecoDeFaturamento;
 
-    public Cliente(String nome, String dataDeCadastro, String dataDeAniversario, Endereco enderecoDeEntrega,
-                   Endereco enderecoDeFaturamento) {
+
+    public Cliente(String nome, String dataDeCadastro, String dataDeAniversario, String cpf) {
         super(id, nome, senha);
         this.dataDeAniversario = dataDeAniversario;
         this.dataDeCadastro = dataDeCadastro;
-        this.enderecoDeEntrega = enderecoDeEntrega;
-        this.enderecoDeFaturamento = enderecoDeFaturamento;
+        this.cpf = cpf;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+       if (ValidaCpf.isValidCpf(cpf)) {
+            this.cpf = cpf;
+        } else{
+            System.out.println("==> CPF no formato inválido")
+       }
+    }
 
     public void setDataDeAniversario(String dataDeAniversario) {
         this.dataDeAniversario = dataDeAniversario;
@@ -40,7 +49,6 @@ public class Cliente extends Usuario {
         return String.format("Nome do Cliente: %s " +
                 "\nCadastrado desde: %s " +
                 "\nData de Aniversário: %s " +
-                "\nEndereço de Entrega: %s" +
-                "\nEndereço de Faturamento: %s", nome, dataDeCadastro, dataDeAniversario, enderecoDeEntrega, enderecoDeFaturamento);
+                "", nome, dataDeCadastro, dataDeAniversario);
     }
 }

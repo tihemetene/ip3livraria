@@ -1,4 +1,4 @@
-package Livraria;
+package livraria;
 
 /**
  *
@@ -8,9 +8,21 @@ package Livraria;
 
 abstract class Usuario {
 
-    private String nome, senha;
+    private String nome;
+    private String senha;
     private int id;
 
+    public Usuario() {
+    	
+    }
+    
+    public  Usuario(int id, String nome, String senha) {
+        this.id = id;
+        this.senha = senha;
+        this.nome = nome;
+    }
+   
+    
     public String getSenha() {
         return senha;
     }
@@ -44,10 +56,6 @@ abstract class Usuario {
                 '}';
     }
 
-    public  Usuario(int id, String nome, String senha) {
-        this.id = id;
-        this.senha = senha;
-        this.nome = nome;
-    }
+   
 
 }

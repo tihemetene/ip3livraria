@@ -18,10 +18,10 @@ public class Cliente extends Usuario {
     
     
     public Cliente(int id, String nome, String senha) {
-		super(id, nome, senha);
-		 this.dataDeAniversario = dataDeAniversario;
-	     this.dataDeCadastro = dataDeCadastro;
-	     this.cpf = cpf;
+	super(id, nome, senha);
+	this.dataDeAniversario = dataDeAniversario;
+	this.dataDeCadastro = dataDeCadastro;
+	this.cpf = cpf;
 	}
 
     public String getCpf() {

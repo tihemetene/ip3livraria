@@ -1,5 +1,4 @@
-package Livraria;
-
+package livraria;
 
 /**
  *
@@ -7,48 +6,70 @@ package Livraria;
  */
 
 public class Cliente extends Usuario {
-    private String cpf;
+    
+	private String cpf;
     private String dataDeCadastro;
     private String dataDeAniversario;
-
-
-    public Cliente(String nome, String dataDeCadastro, String dataDeAniversario, String cpf) {
-        super(id, nome, senha);
-        this.dataDeAniversario = dataDeAniversario;
-        this.dataDeCadastro = dataDeCadastro;
-        this.cpf = cpf;
+ 
+    
+    public Cliente() {
+    	super();
     }
+    
+    
+    public Cliente(int id, String nome, String senha) {
+		super(id, nome, senha);
+		 this.dataDeAniversario = dataDeAniversario;
+	     this.dataDeCadastro = dataDeCadastro;
+	     this.cpf = cpf;
+	}
 
     public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(String cpf) throws Throwable {
        if (ValidaCpf.isValidCpf(cpf)) {
             this.cpf = cpf;
         } else{
-            System.out.println("==> CPF no formato inválido")
+        	throw new Exception("[!] CPF inválido");
        }
     }
 
-    public void setDataDeAniversario(String dataDeAniversario) {
-        this.dataDeAniversario = dataDeAniversario;
+    public void setDataDeAniversario(String dataDeAniversario) throws Throwable {
+    	
+    	if (dataDeAniversario != "" || dataDeAniversario != null) {
+    		this.dataDeAniversario = dataDeAniversario;
+    	} else {
+    		throw new Exception("[!] data inválida");
+    	}
     }
 
     public String getDataDeAniversario() {
         return dataDeAniversario;
     }
 
-    public void setDataDeCadastro(String dataDeCadastro) {
-        this.dataDeCadastro = dataDeCadastro;
+    public void setDataDeCadastro(String dataDeCadastro) throws Throwable {
+    	
+    	if (dataDeCadastro != "" || dataDeCadastro != null) {
+    		this.dataDeCadastro = dataDeCadastro;
+    	} else {
+    		throw new Exception("[!] data inválida");
+    	}
+    	
+        
     }
 
     public String getDataDeCadastro() {
         return dataDeCadastro;
     }
-        return String.format("Nome do Cliente: %s " +
-                "\nCadastrado desde: %s " +
-                "\nData de Aniversário: %s " +
-                "", nome, dataDeCadastro, dataDeAniversario);
-    }
+    
+    
+    @Override
+	public String toString() {
+		return "Cliente [cpf=" + cpf + ", dataDeCadastro=" + dataDeCadastro + ", dataDeAniversario=" + dataDeAniversario
+				+ "]";
+	}
+
+          
 }

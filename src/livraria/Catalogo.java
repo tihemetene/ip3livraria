@@ -1,14 +1,14 @@
-package Livraria;
+package livraria;
 import java.util.Scanner;
 
 public class Catalogo {
 
-    private Produtos[] produtos;
+    private Produto[] produtos;
     private int total;
     private boolean estaOrdenado;
     public static final int TOTAL_LIVROS = 1000;
     public void Produtos() {
-        produtos = new Produtos[TOTAL_LIVROS];
+        produtos = new Produto[TOTAL_LIVROS];
     }
 
     public void cadastrar(String cod) {
@@ -20,7 +20,7 @@ public class Catalogo {
         if (pos == -1) {
             System.out.println("==> Informe o título do livro: ");
             titulo = in.nextLine();
-            produtos[total] = new Produtos(cod, titulo);
+            produtos[total] = new Produto(cod, titulo);
             System.out.println("==> Informe o volume do livro: ");
             volume = in.nextInt();
             produtos[total].setVolume(volume);

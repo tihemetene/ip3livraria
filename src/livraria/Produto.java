@@ -1,13 +1,35 @@
-package Livraria;
+package livraria;
 
-
-public class Produtos {
+public class Produto {
 
     private String cod;
     private String titulo, nome;
     private int volume;
     private int quantidade;
     private double preco;
+
+    public Produto(String cod, String titulo){
+
+        if (cod == null ) {
+            this.cod = "0";
+        } else {
+            this.cod = cod;
+        }
+
+        if (titulo == null ) {
+            this.titulo = "sem titulo";
+        } else {
+            this.titulo = titulo;
+        }
+    }
+
+    public Produto () {
+
+    }
+
+    public Produto(String cod) {
+        this.cod = cod;
+    }
 
     public double getPreco() {
         return preco;
@@ -47,20 +69,7 @@ public class Produtos {
         this.quantidade = quantidade;
     }
 
-    public Produtos(String cod, String titulo){
 
-        if (cod == null ) {
-            this.cod = "0";
-        } else {
-            this.cod = cod;
-        }
-
-        if (titulo == null ) {
-            this.titulo = "sem titulo";
-        } else {
-            this.titulo = titulo;
-        }
-    }
 
     public String getCod(){
 
@@ -94,12 +103,11 @@ public class Produtos {
     }
 
     public void setQtd(int q){
-        qtd = q;
+        quantidade = q;
     }
     
     public int getQtd(){
-        return qtd;
+        return quantidade;
     }
-    
 
 }

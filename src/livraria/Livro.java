@@ -1,24 +1,22 @@
-package Livraria;
+package livraria;
 
 /**
  *
  * @author Rodolfo
  */
 
-public class Livro extends Produtos{
+public class Livro extends Produto {
     private String ISBN;
     private String titulo, editora, descricao;
     private int numero_Paginas;
 
-
-    public Livro(String ISBN, String titulo, String editora, String descricao) {
+    public Livro (String ISBN, String titulo, String editora, String descricao, String cod) {
         super(cod);
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.editora = editora;
-        this.descricao = descricao
+        this.descricao = descricao;
     }
-
 
     public String getISBN() {
         return ISBN;
@@ -59,7 +57,6 @@ public class Livro extends Produtos{
     public void setNumero_Paginas(int numero_Paginas) {
         this.numero_Paginas = numero_Paginas;
     }
-
 
     @Override
     public String toString() {

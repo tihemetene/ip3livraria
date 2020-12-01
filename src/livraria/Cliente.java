@@ -10,6 +10,7 @@ public class Cliente extends Usuario {
 	private String cpf;
     private String dataDeCadastro;
     private String dataDeAniversario;
+    private final Utils util = new Utils();
  
     
     public Cliente() {
@@ -29,7 +30,7 @@ public class Cliente extends Usuario {
     }
 
     public void setCpf(String cpf) throws Throwable {
-       if (ValidaCpf.isValidCpf(cpf)) {
+       if (util.validaCPF(cpf)) {
             this.cpf = cpf;
         } else{
         	throw new Exception("[!] CPF inválido");

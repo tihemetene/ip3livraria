@@ -1,4 +1,4 @@
-package Livraria;
+package livraria;
 
 
 /**
@@ -12,7 +12,7 @@ public class Funcionario extends Usuario {
 
     private double salario;
     private String funcao, matricula;
-    private boolean isAdmin;
+    private final boolean isAdmin;
 
     public Funcionario(int id, String nome, String senha, double salario, String funcao, String matricula, boolean isAdmin) {
         super(id, nome, senha);

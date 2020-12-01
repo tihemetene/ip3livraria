@@ -7,12 +7,12 @@ package livraria;
 
 public class Carrinho {
     private Cliente cliente;
-    private Produtos produtos;
+    private Produto produtos;
     private double total;
     private int quantidade;
 
 
-    public Carrinho(Cliente cliente, Produtos produtos) {
+    public Carrinho(Cliente cliente, Produto produtos) {
         this.cliente = cliente;
         this.produtos = produtos;
 
@@ -42,11 +42,11 @@ public class Carrinho {
         return cliente;
     }
 
-    public void setItemCarrinho(Produtos produtos) {
+    public void setItemCarrinho(Produto produtos) {
         this.produtos = produtos;
     }
 
-    public Produtos getCarrinho() {
+    public Produto getCarrinho() {
         return produtos;
     }
 

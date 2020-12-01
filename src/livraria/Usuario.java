@@ -12,14 +12,14 @@ abstract class Usuario {
     private String senha;
     private int id;
 
-    public Usuario() {
-    	
-    }
-    
-    public  Usuario(int id, String nome, String senha) {
+    public Usuario(int id, String nome, String senha) {
         this.id = id;
         this.senha = senha;
         this.nome = nome;
+    }
+
+    public Usuario() {
+
     }
    
     

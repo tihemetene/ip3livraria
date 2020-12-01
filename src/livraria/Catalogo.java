@@ -26,7 +26,7 @@ public class Catalogo {
             produtos[total].setVolume(volume);
             System.out.println("==> Informe a quantidade em estoque: ");
             qtd = in.nextInt();
-            produtos[total].setQtd(qtd);
+            produtos[total].setQuantidade(qtd);
             total++;
             estaOrdenado = false;
             System.out.println("==> registro efetuado ");

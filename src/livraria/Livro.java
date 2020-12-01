@@ -23,7 +23,13 @@ public class Livro extends Produto {
     }
 
     public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+        try {
+            if (ISBN != null || ISBN != "") {
+                this.ISBN = ISBN;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("ISBN não pode ser nulo");
+        }
     }
 
     public String getTitulo() {
@@ -31,7 +37,13 @@ public class Livro extends Produto {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        try {
+            if (titulo != null || titulo != "") {
+                this.titulo = titulo;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("titulo não pode ser nulo");
+        }
     }
 
     public String getEditora() {
@@ -39,7 +51,13 @@ public class Livro extends Produto {
     }
 
     public void setEditora(String editora) {
-        this.editora = editora;
+        try {
+            if (editora != null || editora != "") {
+                this.editora = editora;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("editora não pode ser nulo");
+        }
     }
 
     public String getDescricao() {
@@ -47,7 +65,13 @@ public class Livro extends Produto {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        try {
+            if (descricao != null || descricao != "") {
+                this.descricao = descricao;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("descricao não pode ser nulo");
+        }
     }
 
     public int getNumero_Paginas() {
@@ -55,8 +79,16 @@ public class Livro extends Produto {
     }
 
     public void setNumero_Paginas(int numero_Paginas) {
-        this.numero_Paginas = numero_Paginas;
+        try {
+            if (numero_Paginas > 1) {
+                this.numero_Paginas = numero_Paginas;
+            }
+        } catch (IllegalArgumentException erro) {
+            System.out.println("numero de paginas não pode ser 0");
+        }
     }
+
+
 
     @Override
     public String toString() {

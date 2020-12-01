@@ -27,7 +27,13 @@ public class Funcionario extends Usuario {
     }
 
     public void setSalario(double salario) {
-        this.salario = salario;
+        try {
+            if (salario > 1000.0) {
+                this.salario = salario;
+            }
+        } catch (IllegalArgumentException erro) {
+            System.out.println("salario nao pode ser menor do que 1000");
+        }
     }
 
     public String getFuncao() {
@@ -35,7 +41,13 @@ public class Funcionario extends Usuario {
     }
 
     public void setFuncao(String funcao) {
-        this.funcao = funcao;
+        try {
+            if (funcao != "" || funcao != null) {
+                this.funcao = funcao;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("funcao nao pode ser nula");
+        }
     }
 
     public String getMatricula() {
@@ -43,7 +55,13 @@ public class Funcionario extends Usuario {
     }
 
     public void setMatricula(String matricula) {
-        this.matricula = matricula;
+        try {
+            if (matricula != "" || matricula != null) {
+                this.matricula = funcao;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("matricula nao pode ser nula");
+        }
     }
 
     @Override
@@ -60,10 +78,4 @@ public class Funcionario extends Usuario {
         }
     }
 
-    /*
-    * Fazer metodos abaixo
-    * ==> alterarDadosFuncionario, BuscarFuncionario
-    *
-    *
-    * */
 }

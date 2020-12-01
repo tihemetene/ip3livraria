@@ -9,18 +9,26 @@ public class Produto {
     private double preco;
 
     public Produto(String cod, String titulo){
-
-        if (cod == null ) {
-            this.cod = "0";
-        } else {
-            this.cod = cod;
+        try {
+            if (cod == null ) {
+                this.cod = "0";
+            } else {
+                this.cod = cod;
+            }
+        } catch (NullPointerException erro1) {
+            System.out.println("[!] Falha Criar Produto" + erro1);
         }
 
-        if (titulo == null ) {
-            this.titulo = "sem titulo";
-        } else {
-            this.titulo = titulo;
+        try {
+            if (titulo == null ) {
+                this.titulo = "sem titulo";
+            } else {
+                this.titulo = titulo;
+            }
+        } catch (NullPointerException erro2) {
+            System.out.println("[!] Falha Criar Produto" + erro2);
         }
+
     }
 
     public Produto () {
@@ -36,10 +44,13 @@ public class Produto {
     }
 
     public void setPreco(double preco) {
-        if (preco <= 0 ) {
-            System.out.println("=> Valor não poder ser zero ou menor do que isso");
-        }
-        this.preco = preco;
+      try {
+          if (preco >= 1.0) {
+              this.preco = preco;
+          }
+      } catch (IllegalArgumentException erro) {
+          System.out.println("[!] Preco não pode ser negativo");
+      }
     }
 
     public String getTitulo() {
@@ -51,25 +62,44 @@ public class Produto {
     }
 
     public void setCod(String cod) {
-        this.cod = cod;
+        try {
+            if (this.cod != "" || this.cod != null) {
+                this.cod = cod;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("[!] código não pode ser nulo");
+        }
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        try {
+            if(this.titulo != "" || this.titulo != null) {
+                this.titulo = titulo;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("[!] titulo não pode ser nulo");
+        }
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        try {
+            if(this.nome != "" || this.nome != null) {
+                this.nome = nome;
+            }
+        } catch (NullPointerException erro) {
+            System.out.println("[!] nome não pode ser nulo");
+        }
     }
 
     public void setQuantidade(int quantidade) {
-        if (quantidade <= 0 || quantidade >= 200) {
-            System.out.println("==> Quantidade não pode ser vazia.. ou maior do que 100");
+        try {
+            if (quantidade >= 1.0) {
+                this.quantidade = quantidade;
+            }
+        } catch (IllegalArgumentException erro) {
+            System.out.println("[!] quantidade não pode ser negativo");
         }
-        this.quantidade = quantidade;
     }
-
-
 
     public String getCod(){
 
@@ -99,13 +129,15 @@ public class Produto {
     }
     
     public void setVolume(int v){
-        this.volume = v;
+        try {
+            if (v >= 1.0) {
+                this.volume = v;
+            }
+        } catch (IllegalArgumentException erro) {
+            System.out.println("[!] volume não pode ser negativo");
+        }
     }
 
-    public void setQtd(int q){
-        quantidade = q;
-    }
-    
     public int getQtd(){
         return quantidade;
     }

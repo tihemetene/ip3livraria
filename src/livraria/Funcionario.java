@@ -64,6 +64,10 @@ public class Funcionario extends Usuario {
         }
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
     @Override
     public String toString() {
         return "Funcionario{" +
@@ -77,5 +81,6 @@ public class Funcionario extends Usuario {
             System.out.println("[+] Funcionario: " + this.getNome() + " Funçao: " + this.getFuncao() + " " + this.getMatricula());
         }
     }
+
 
 }

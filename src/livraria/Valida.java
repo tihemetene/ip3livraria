@@ -3,7 +3,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Utils {
+public class Valida {
+
+    public Valida() {
+
+    }
+
+
     public boolean validaCPF(String cpf) {
         return true;
     }
@@ -12,7 +18,7 @@ public class Utils {
         return true;
     }
 
-    private boolean verificaçaododia(String data) {
+    public boolean verificaçaododia(String data) {
 
         String[] arrOfStr = data.split("/", 4);
         String dia, mes, ano;
@@ -45,7 +51,7 @@ public class Utils {
         return false;
     }
 
-    private boolean verificarD1(String valor) {
+    public boolean verificarD1(String valor) {
         int v = 0;
         int soma = 0;
         char b;
@@ -68,7 +74,7 @@ public class Utils {
     }
 
 
-    private boolean verificarD2(String valor) {
+    public boolean verificarD2(String valor) {
         int v = 0;
         int soma = 0;
         char b;
@@ -91,7 +97,7 @@ public class Utils {
     }
 
 
-    private boolean verificarMail(String mail) {
+    public boolean verificarMail(String mail) {
         String regex = "^(.+)@(.+)$";
 
         Pattern pattern = Pattern.compile(regex);
@@ -101,7 +107,7 @@ public class Utils {
         return matcher.matches();
     }
 
-    private String verificarNome(String nome) {
+    public String verificarNome(String nome) {
         for (int i = 0; i < nome.length(); i++) {
             if (!(Character.isLetter(nome.charAt(i)) || nome.charAt(i) == ' ')) {
                 return null;
@@ -114,7 +120,7 @@ public class Utils {
         return nome;
     }
 
-    private boolean verificarNumber(String numero) {
+    public boolean verificarNumber(String numero) {
         if (numero.length()>=10){
             for (int i = 0; i < numero.length(); i++) {
                 if ((!Character.isDigit(numero.charAt(i)))) {
@@ -122,6 +128,40 @@ public class Utils {
                 }
             }
         }//se tiver menos de 10 digitos
+        return false;
+    }
+
+
+    public boolean validarTelaLogin(String str) {
+        if (str == "") {
+            return false;
+        } else if (str.length() < 3) {
+            return false;
+        } else return !str.contains("',#,%;.,.,");
+
+    }
+
+
+    public boolean verificarAdmin(Object o) {
+        if (o instanceof  Funcionario) {
+            return ((Funcionario) o).isAdmin();
+        }
+        return  false;
+    }
+
+    //Login é a matricula
+    public boolean verificarLogin(Object o, String login) {
+        if (o instanceof Funcionario) {
+            return ((Funcionario) o).getMatricula().equals(login);
+        }
+        return false;
+    }
+
+
+    public boolean verificarSenha(Object o, String senha) {
+        if (o instanceof Funcionario) {
+            return ((Funcionario) o).getSenha().equals(senha);
+        }
         return false;
     }
 }

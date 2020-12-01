@@ -10,8 +10,12 @@ public class LivrariaMain {
         String cod = " ", titulo, matricula;
         Catalogo Livraria = new Catalogo();
 
+        Valida valida = new Valida();
+
+
         do{
-            exibirMenu();
+            MenuLogin();
+            //exibirMenu();
             System.out.print("==> Informe a opção: ");
             op = Integer.parseInt(in.nextLine());
             switch (op){
@@ -42,6 +46,57 @@ public class LivrariaMain {
         System.out.println("5 - Sair do programa ");
     }
 
+
+    public static void exibirMenuAdmin(){
+        banner();
+        System.out.println("Menu principal ");
+        System.out.println("1 - Registrar um livro");
+        System.out.println("2 - Editar Livro");
+        System.out.println("3 - Remover Livro");
+        System.out.println("4 - Consultar livro");
+        System.out.println("5 - Consultar dados de um livro");
+        System.out.println("6 - Cadastrar Funcionario");
+        System.out.println("7 - Editar Funcionario");
+        System.out.println("8 - Remover Funcionario");
+        System.out.println("9 - Cadastrar Funcionario");
+        System.out.println("10 - Consultar produto");
+        System.out.println("-1 - Sair do programa ");
+    }
+
+
+    public static void MenuLogin() {
+        Funcionario Admin = new Funcionario(1, "Admin", "ABC@123", 10000.00, "Gerente TI", "1", true);
+        Valida valida = new Valida();
+        Scanner login = new Scanner(System.in);
+        Scanner senha = new Scanner(System.in);
+        String inputLogin,inputSenha;
+        Boolean validaLogin;
+        banner();
+        do {
+            System.out.println("==> Bem vindo a Livraria \n digite seu login e senha para prosseguir com seu dia");
+            inputLogin = login.nextLine();
+            validaLogin = valida.verificarLogin(Admin, inputLogin);
+            if (!validaLogin) {
+                System.out.println("Dados inválidos favor tentar novamente");
+            }
+        } while(validaLogin != true); {
+            if (valida.verificarLogin(Admin, inputLogin)) {
+                System.out.println("==> Digite sua senha para prosseguir: ");
+                inputSenha = senha.nextLine();
+                System.out.println("" + inputLogin + ": " + inputSenha);
+                if (valida.verificarAdmin(Admin)) {
+                    if(valida.verificarSenha(Admin,Admin.getSenha())) {
+                        exibirMenuAdmin();
+                    }
+                }
+            } else {
+                System.out.println("Dados inválidos favor tentar novamente");
+            }
+        }
+
+
+
+    }
 
     public static void banner() {
         System.out.println("\n" +

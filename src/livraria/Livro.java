@@ -1,9 +1,6 @@
 package livraria;
+import livraria.model.Produto;
 
-/**
- *
- * @author Rodolfo
- */
 
 public class Livro extends Produto {
     private String ISBN;

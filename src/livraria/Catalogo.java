@@ -1,5 +1,6 @@
 package livraria;
 import java.util.Scanner;
+import livraria.model.Produto;
 
 public class Catalogo {
 

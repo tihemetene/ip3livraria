@@ -14,7 +14,37 @@ public class ProdutoController {
     private final InProduto repositorioProduto;
 
     public ProdutoController(){
-        this.repositorioProduto = (InProduto) new RepoProduto();
+        this.repositorioProduto = new InProduto() {
+            @Override
+            public boolean cadastrarProduto(Produto produto) {
+                return false;
+            }
+
+            @Override
+            public boolean alterarQuantidade(int codigo, int quantidade) {
+                return false;
+            }
+
+            @Override
+            public List listarProdutos() {
+                return null;
+            }
+
+            @Override
+            public boolean removerProduto(int codigo) {
+                return false;
+            }
+
+            @Override
+            public int buscarProduto(int codigo) {
+                return 0;
+            }
+
+            @Override
+            public Produto retornarProduto(int codigo) {
+                return null;
+            }
+        };
     }
 
     public boolean cadastrarProduto(Produto produto){

@@ -1,22 +1,20 @@
 package livraria.view;
-
 import livraria.Interface.InFachada;
 import livraria.controller.Fachada;
 import livraria.exceptions.ExisteProdutoExcecao;
 import livraria.model.Produto;
 import livraria.model.AdminUsuario;
+import livraria.model.ClienteUsuario;
 import java.util.Scanner;
-
-
+import java.util.Date;
+import java.util.List;
 
 public class Aplicacao {
     private static final InFachada fachada = new Fachada();
-
     /*
-    *  Singleton
-    *
-    * */
-
+     *  Singleton
+     *
+     * */
     private static Aplicacao instance;
 
     static Aplicacao getInstance() {
@@ -28,24 +26,23 @@ public class Aplicacao {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
 
         int menuAdm, menuCliAuth, codProduto, menuAdminAuth, menuInicial, menuCli, qtdEstoque;
         String nome, telefone, cpf, senha, marca, descricao;
-        Menu m = new Menu();
-        System.out.println(m.banner());
+        System.out.println(banner());
         double preco;
         boolean login;
         Produto produto;
 
 
         do{
-            menuInicial = m.menuInicial();
+            menuInicial = menuInicial();
             switch(menuInicial){
                 case 1:
                     //MenuInicial
                     do{
-                        menuCli = m.menuCliente();
+                        menuCli = menuCliente();
                         switch(menuCli){
                             case 1:
                                 //Fazer login
@@ -55,7 +52,7 @@ public class Aplicacao {
                                 login = fachada.loginCliente(cpf, senha);
                                 if(login){
                                     do{
-                                        menuCliAuth = m.menuClienteAutenticado();
+                                        menuCliAuth = menuClienteAutenticado();
                                         switch(menuCliAuth){
                                             /*
                                              + "1. Visualizar catálogo. \n"
@@ -66,7 +63,7 @@ public class Aplicacao {
                                             + "6. Sair. \n"
                                             */
                                             case 1:
-                                                m.percorreLista(fachada.visualizarProdutos());
+                                                percorreLista(fachada.visualizarProdutos());
                                                 break;
                                             case 2:
                                                 System.out.print("Código do produto: ");
@@ -80,7 +77,7 @@ public class Aplicacao {
                                                 break;
                                             case 4:
                                                 System.out.println("Visualizar carrinho");
-                                                m.percorreLista(fachada.visualizarCarrinho());
+                                                percorreLista(fachada.visualizarCarrinho());
                                                 break;
                                             case 5:
                                                 System.out.println("Finalizando compras");
@@ -91,7 +88,7 @@ public class Aplicacao {
                                                 break;
                                             default:
                                                 System.out.println("Opção inválida - ClienteAuth()");
-                                                menuCliAuth = m.menuClienteAutenticado();
+                                                menuCliAuth = menuClienteAutenticado();
                                         }
                                     }while(menuCliAuth != 6);
                                 }
@@ -103,23 +100,25 @@ public class Aplicacao {
                                 System.out.print("CPF: "); cpf = in.nextLine();
                                 System.out.print("Telefone: "); telefone = in.nextLine();
                                 System.out.print("Senha: "); senha = in.nextLine();
-//                                UsuarioCliente novoCliente = new UsuarioCliente(cpf, nome, telefone, senha, p);
-//                                fachada.cadastrarCliente(novoCliente);
-//                                System.out.println("Usuário "+novoCliente.getNome()+" cadastrado!");
+                                Date data = new Date();
+
+                                ClienteUsuario novoCliente = new ClienteUsuario(cpf, nome, telefone, senha, data);
+                                fachada.cadastrarCliente(novoCliente);
+                                System.out.println("Usuário "+novoCliente.getNome()+" cadastrado!");
                                 break;
                             case 3:
                                 System.out.println("Saindo da área do cliente!");
                                 break;
                             default:
                                 System.out.println("Opção inválida - menuCli()");
-                                menuCli = m.menuCliente();
+                                menuCli = menuCliente();
                         }
                     }while (menuCli != 3);
                     break;
                 case 2:
                     //MenuInicial
                     do{
-                        menuAdm = m.menuAdministrativo();
+                        menuAdm = menuAdministrativo();
                         switch(menuAdm){
                             case 1:
                                 //Fazer login
@@ -129,7 +128,7 @@ public class Aplicacao {
                                 login = fachada.loginAdministrador(cpf, senha);
                                 if(login){
                                     do{
-                                        menuAdminAuth = m.menuAdministrativoAuth();
+                                        menuAdminAuth = menuAdministrativoAuth();
                                         switch(menuAdminAuth){
                                             /*
                                             + "1. Cadastrar Produto. \n"
@@ -137,7 +136,6 @@ public class Aplicacao {
                                             + "3. Remover produto. \n"
                                             + "4. Visualizar catálogo. \n"
                                             + "5. Sair. \n"
-                    String nome, String marca, String descricao, double preco, int qtdEstoque
                                             */
                                             case 1:
                                                 System.out.println("Cadastrar novo Produto");
@@ -171,7 +169,7 @@ public class Aplicacao {
                                                 System.out.println("Produto removido.");
                                                 break;
                                             case 4:
-                                                m.percorreLista(fachada.visualizarProdutos());
+                                                percorreLista(fachada.visualizarProdutos());
                                                 break;
                                             case 5:
                                                 fachada.aplicarDescontoAleatorio();
@@ -181,7 +179,7 @@ public class Aplicacao {
                                                 break;
                                             default:
                                                 System.out.println("Opção inválida - AdmAuth()");
-                                                menuAdminAuth = m.menuAdministrativoAuth();
+                                                menuAdminAuth = menuAdministrativoAuth();
                                         }
 
                                     }while(menuAdminAuth != 6);
@@ -194,7 +192,8 @@ public class Aplicacao {
                                 System.out.print("CPF: "); cpf = in.nextLine();
                                 System.out.print("Telefone: "); telefone = in.nextLine();
                                 System.out.print("Senha: "); senha = in.nextLine();
-                                AdminUsuario user = new AdminUsuario(cpf, nome, telefone, senha);
+                                Date data = new Date();
+                                AdminUsuario user = new AdminUsuario(cpf, nome, telefone, senha, data);
                                 fachada.cadastarAdministrador(user);
                                 System.out.println("Usuário: " + user.getNome() + " cadastrado com sucesso!");
                                 break;
@@ -203,7 +202,7 @@ public class Aplicacao {
                                 break;
                             default:
                                 System.out.println("Opção inválida - menuAdm()");
-                                menuAdm = m.menuAdministrativo();
+                                menuAdm = menuAdministrativo();
                         }
                         //Código admin
                     } while(menuAdm != 3);
@@ -213,8 +212,126 @@ public class Aplicacao {
                     break;
                 default:
                     System.out.println("Opção inválida - menuInicial()");
-                    menuInicial = m.menuInicial();
+                    menuInicial = menuInicial();
             }
         }while(menuInicial != 3);
     } //fim main
+
+    public static int menuInicial() {
+        Scanner in = new Scanner(System.in);
+        int opcao;
+        banner();
+        System.out.print("v1.0\n"
+                + "1. Área do Cliente\n"
+                + "2. Área do Administrador\n"
+                + "3. Sair\n"
+                + "Opção: ");
+        opcao = in.nextInt();
+        in.nextLine();
+        return opcao;
+    }
+
+    public static int menuCliente() {
+        Scanner in = new Scanner(System.in);
+        int opcao;
+        System.out.println("[!] Área do cliente.");
+        System.out.print("Escolha a opção desejada: \n"
+                + "1. Efetuar login \n"
+                + "2. Realizar cadastro \n"
+                + "3. Sair\n"
+                + "Opção: ");
+        opcao = in.nextInt();
+        in.nextLine();
+        return opcao;
+    }
+
+    public static int menuClienteAutenticado() {
+        Scanner in = new Scanner(System.in);
+        int opcao;
+        System.out.println("==> Área do cliente.");
+        System.out.print("Escolha a opção: \n"
+                + "1. Visualizar catálogo. \n"
+                + "2. Adicionar item ao carrinho. \n"
+                + "3. Remover item do carrinho. \n"
+                + "4. Visualizar carrinho. \n"
+                + "5. Finalizar compra. \n"
+                + "6. Sair. \n"
+                + "Opção: ");
+        opcao = in.nextInt();
+        in.nextLine();
+        return opcao;
+    }
+
+    public static int menuAdministrativo() {
+        Scanner in = new Scanner(System.in);
+        int opcao;
+        System.out.print("Área do Administrador \n"
+                + "1. Efetuar login \n"
+                + "2. Cadastrar Administrador\n"
+                + "3. Sair\n"
+                + "Opção: ");
+        opcao = in.nextInt();
+        in.nextLine();
+        return opcao;
+    }
+
+    public static int menuAdministrativoAuth() {
+        int opcao;
+        Scanner in = new Scanner(System.in);
+        System.out.print("Menu Admnistrativo \n"
+                + "1. Cadastrar Produto. \n"
+                + "2. Alterar quantidade em estoque. \n"
+                + "3. Remover produto. \n"
+                + "4. Visualizar catálogo. \n"
+                + "5. Aplicar roleta desconto. \n"
+                + "6. Sair. \n"
+                + "Opção: ");
+        opcao = in.nextInt();
+        in.nextLine();
+        return opcao;
+    }
+
+    public static void percorreLista(List l) {
+        if(l.isEmpty()){
+            System.out.println("Lista vazia");
+        }
+        l.forEach((a) -> {
+            System.out.println(a);
+        });
+    }
+
+    public static String banner() {
+        return  "        ,\n" +
+                " LIVRARIA DINO BUGGER ,\n" +
+                "       /|\n" +
+                "      / |\n" +
+                "     /  /\n" +
+                "    |   |\n" +
+                "   /    |\n" +
+                "   |    \\_\n" +
+                "   |      \\__\n" +
+                "   \\       __\\_______\n" +
+                "    \\                 \\_\n" +
+                "    | /                 \\\n" +
+                "    \\/                   \\\n" +
+                "     |                    |\n" +
+                "     \\                   \\|\n" +
+                "     |                    \\\n" +
+                "     \\                     |\n" +
+                "     /\\    \\_               \\\n" +
+                "    / |      \\__ (   )       \\\n" +
+                "   /  \\      / |\\\\  /       __\\____\n" +
+                "snd|  ,     |  /\\ \\ \\__    |       \\_\n" +
+                "   \\_/|\\___/   \\   \\}}}\\__|  (@)     )\n" +
+                "    \\)\\)\\)      \\_\\---\\   \\|       \\ \\\n" +
+                "                  \\>\\>\\>   \\   /\\__o_o)\n" +
+                "                            | /  VVVVV\n" +
+                "                            \\ \\    \\\n" +
+                "                             \\ \\MMMMM                  oh bugger!\n" +
+                "                              \\______/         _____ /\n" +
+                "                                              |  O O|\n" +
+                "                                             /___|_|/\\_\n" +
+                "                                        ==( |          |\n" +
+                "                                             (o)====(o)";
+    }
 }

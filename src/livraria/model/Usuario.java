@@ -1,17 +1,22 @@
 package livraria.model;
+import java.util.Date;
 
 public abstract class Usuario {
     protected String CPF;
     protected String nome;
     protected String telefone;
     protected String senha;
+    protected String tipo;
+    protected Date data;
 
-    public Usuario(String CPF, String nome, String telefone, String senha) {
+    public Usuario(String CPF, String nome, String telefone, String senha, Date data) {
         this.CPF = CPF;
         this.nome = nome;
         this.telefone = telefone;
         this.senha = senha;
+        this.data = data;
     }
+
 
     public String getCPF() {
         return CPF;
@@ -44,4 +49,21 @@ public abstract class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = new Date();
+    }
+
+    public String getTipo(){
+        return tipo;
+    }
+
+    public void setTipo(String tipo){
+        this.tipo = tipo;
+    }
+
 }

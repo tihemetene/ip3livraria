@@ -7,6 +7,7 @@ public class Menu {
 
     public Menu() {
 
+        
     }
 
     public int menuInicial() {

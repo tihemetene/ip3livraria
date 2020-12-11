@@ -12,13 +12,17 @@ import java.util.Scanner;
 public class Aplicacao {
     private static final InFachada fachada = new Fachada();
 
-    static private final Aplicacao instance = new Aplicacao();
+    /*
+    *  Singleton
+    *
+    * */
 
-    private Aplicacao() {
-
-    }
+    private static Aplicacao instance;
 
     static Aplicacao getInstance() {
+        if (instance == null) {
+            instance = new Aplicacao();
+        }
         return instance;
     }
 

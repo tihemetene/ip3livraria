@@ -1,5 +1,5 @@
 package livraria.model.repositorio;
-
+import livraria.model.FactoryProduto;
 import livraria.model.Produto;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class RepoProduto {
     }
 
 
-    public boolean alterarQuantidade(int codigo, int quantidade) {
+    public boolean alterarQuantidade(String codigo, int quantidade) {
         if(this.buscarProduto(codigo) != -1){
             int index = this.buscarProduto(codigo);
             this.listaProdutos.get(index).setQtdEstoque(quantidade);
@@ -30,7 +30,7 @@ public class RepoProduto {
     }
 
 
-    public boolean removerProduto(int codigo) {
+    public boolean removerProduto(String codigo) {
         if(buscarProduto(codigo) == -1){
             return false;
         }
@@ -38,9 +38,9 @@ public class RepoProduto {
         return true;
     }
 
-    public int buscarProduto(int codigo) {
+    public int buscarProduto(String codigo) {
         for(int i = 0; i < this.listaProdutos.size(); i++){
-            if(this.listaProdutos.get(i).getCodigo() == codigo){
+            if(this.listaProdutos.get(i).getCodBarras().equalsIgnoreCase(codigo)){
                 return i;
             }
         }
@@ -48,7 +48,7 @@ public class RepoProduto {
     }
 
 
-    public Produto retornarProduto(int codigo) {
+    public Produto retornarProduto(String codigo) {
         int codigoProduto = this.buscarProduto(codigo);
         if(codigoProduto != -1){
             return this.listaProdutos.get(codigoProduto);
@@ -56,4 +56,8 @@ public class RepoProduto {
             return null;
         }
     }
+
+    //FactoryProduto factory = new FactoryProduto();
+
+
 }

@@ -2,6 +2,7 @@ package livraria.view;
 import livraria.Interface.InFachada;
 import livraria.controller.Fachada;
 import livraria.exceptions.ExisteProdutoExcecao;
+import livraria.model.FactoryProduto;
 import livraria.model.Produto;
 import livraria.model.AdminUsuario;
 import livraria.model.ClienteUsuario;
@@ -28,13 +29,13 @@ public class Aplicacao {
 
     public static void main(String[] args){
 
-        int menuAdm, menuCliAuth, codProduto, menuAdminAuth, menuInicial, menuCli, qtdEstoque;
-        String nome, telefone, cpf, senha, marca, descricao;
+        int menuAdm, menuCliAuth, codProduto, menuAdminAuth, menuInicial, menuCli, qtdEstoque, tipo;
+        String nome, telefone, cpf, senha, editora, descricao, codBarras;
         System.out.println(banner());
         double preco;
         boolean login;
         Produto produto;
-
+        FactoryProduto factory = new FactoryProduto();
 
         do{
             menuInicial = menuInicial();
@@ -139,17 +140,21 @@ public class Aplicacao {
                                             */
                                             case 1:
                                                 System.out.println("Cadastrar novo Produto");
+                                                System.out.println("Tipo do produto(1-Livro/2-Jogo): ");
+                                                tipo = in.nextInt();
                                                 System.out.print("Nome do produto: ");
                                                 nome = in.nextLine();
-                                                System.out.print("Marca do produto: ");
-                                                marca = in.nextLine();
+                                                System.out.print("Editora/Empresa do produto: ");
+                                                editora = in.nextLine();
                                                 System.out.print("Descricao do produto: ");
                                                 descricao = in.nextLine();
+                                                System.out.println("Cód. de barras do produto: ");
+                                                codBarras = in.nextLine();
                                                 System.out.print("Preço do produto: ");
                                                 preco = in.nextDouble();
                                                 System.out.print("Qtd em estoque: ");
                                                 qtdEstoque = in.nextInt();
-                                                produto = new Produto(nome,marca,descricao,preco,qtdEstoque);
+                                                produto = new Produto(nome, editora, descricao, preco, qtdEstoque, codBarras, tipo);
                                                 System.out.println(fachada.cadastrarProduto(produto));
                                                 System.out.println("Produto: "+produto.toString() + "cadastrado");
                                                 break;

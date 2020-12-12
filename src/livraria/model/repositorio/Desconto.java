@@ -19,7 +19,10 @@ public class Desconto implements Runnable {
             numeroAleatorio = (int)(Math.random()*10);
         }while(numeroAleatorio >= valorMaximo);
 
-        Produto produtoSorteado = this.repositorioProduto.retornarProduto(numeroAleatorio);
+        String random;
+        random = Integer.toString(numeroAleatorio);
+
+        Produto produtoSorteado = this.repositorioProduto.retornarProduto(random);
         double precoAtual = produtoSorteado.getPreco();
         double novoPreco = precoAtual - precoAtual*0.2;
         produtoSorteado.setPreco(novoPreco);

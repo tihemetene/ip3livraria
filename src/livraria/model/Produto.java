@@ -7,55 +7,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Produto implements InSubject {
-        private int codigo;
-        private String ISBN;
-        private String nome;
-        private String marca;
-        private String descricao;
-        private String editora;
-        private int volume;
-        private double preco;
-        private int qtdEstoque;
+        protected String codBarras;
+        protected String nome;
+        protected String descricao;
+        protected String editora;
+        protected int tipo;
+        protected double preco;
+        protected int qtdEstoque;
         List <InObserver> listObservers;
 
-        public Produto(String nome, String marca, String descricao, double preco, int qtdEstoque) {
-            this.nome = nome;
-            this.marca = marca;
-            this.descricao = descricao;
-            this.preco = preco;
-            this.qtdEstoque = qtdEstoque;
-            this.listObservers = new ArrayList();
 
-        }
-
-    public Produto(String nome, int volume, String editora, String marca, String descricao, double preco, int qtdEstoque, String ISBN) {
+    public Produto(String nome, String editora, String descricao, double preco, int qtdEstoque, String codBarras, int tipo) {
         this.nome = nome;
-        this.volume = volume;
-        this.marca = marca;
         this.descricao = descricao;
         this.preco = preco;
         this.qtdEstoque = qtdEstoque;
         this.listObservers = new ArrayList();
-        this.ISBN = ISBN;
+        this.codBarras = codBarras;
         this.editora = editora;
+        this.tipo = tipo;
 
 
     }
 
-    public int getVolume() {
-        return volume;
+
+    public String getCodBarras() {
+        return codBarras;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setCodBarras(String codBarras) {
+        this.codBarras = codBarras;
     }
 
     public String getEditora() {
@@ -66,28 +47,12 @@ public class Produto implements InSubject {
         this.editora = editora;
     }
 
-    public int getCodigo() {
-            return this.codigo;
-        }
-
-        public void setCodigo(int codigo) {
-            this.codigo = codigo;
-        }
-
         public String getNome() {
             return nome;
         }
 
         public void setNome(String nome) {
             this.nome = nome;
-        }
-
-        public String getMarca() {
-            return marca;
-        }
-
-        public void setMarca(String marca) {
-            this.marca = marca;
         }
 
         public String getDescricao() {
@@ -107,7 +72,15 @@ public class Produto implements InSubject {
             hasChanged();
         }
 
-        public void setQtdEstoque(int qtdEstoque){
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setQtdEstoque(int qtdEstoque){
             this.qtdEstoque = qtdEstoque;
         }
 
@@ -117,7 +90,7 @@ public class Produto implements InSubject {
 
         @Override
         public String toString() {
-            return "\n" + "Código: " + codigo + "\n" + "Nome: " + nome + "\n" + "Marca: " + marca + "\n"
+            return "Nome: " + nome + "\n" + "Tipo: " + tipo + "\n"
                     + "Descrição: " + descricao + "\n" + "Preço: " + preco + "\n";
         }
 

@@ -1,6 +1,8 @@
 package livraria.model;
 import java.util.Date;
 
+import java.util.Date;
+
 public abstract class Usuario {
     protected String CPF;
     protected String nome;

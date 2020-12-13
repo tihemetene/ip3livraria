@@ -1,20 +1,28 @@
 package livraria.view;
+
 import livraria.Interface.InFachada;
 import livraria.controller.Fachada;
 import livraria.exceptions.ExisteProdutoExcecao;
+import livraria.model.ClienteUsuario;
+import livraria.model.FactoryProduto;
 import livraria.model.Produto;
 import livraria.model.AdminUsuario;
-import livraria.model.ClienteUsuario;
-import java.util.Scanner;
+
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
+
+
 
 public class Aplicacao {
     private static final InFachada fachada = new Fachada();
+
     /*
-     *  Singleton
-     *
-     * */
+    *  Singleton
+    *
+    * */
+
     private static Aplicacao instance;
 
     static Aplicacao getInstance() {
@@ -26,14 +34,60 @@ public class Aplicacao {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException, ExisteProdutoExcecao {
 
-        int menuAdm, menuCliAuth, codProduto, menuAdminAuth, menuInicial, menuCli, qtdEstoque;
-        String nome, telefone, cpf, senha, marca, descricao;
         System.out.println(banner());
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        /**
+         *
+         *  Testes
+         *
+         *
+         *
+         * */
+        Date d = new Date();
+        AdminUsuario user1 = new AdminUsuario("1", "admin", "1", "1", d);
+        fachada.cadastarAdministrador(user1);
+        System.out.println("Usuário: " + user1.getNome() + " cadastrado com sucesso!");
+
+        Produto produto1 = new Produto("Livro", "Programando em Jaca", "Jaca programming", 20, 20, 1, 1);
+        fachada.cadastrarProduto(produto1);
+        System.out.println("Produto [Livro]  : " + produto1 + " Salvo com sucesso");
+
+        Produto produto2 = new Produto("Jogo", "Tray Arcs", "Joguinho", 20, 20, 2, 2);
+        fachada.cadastrarProduto(produto1);
+        System.out.println("Produto [Jogo]: " + produto1 + " Salvo com sucesso");
+
+        ClienteUsuario cli = new ClienteUsuario("1", "Cliente", "1", "1", d);
+        System.out.println("Usuário " + cli.getNome()+ " cadastrado!");
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
+        /**
+         *
+         *  Testes
+         *
+         *
+         *
+         * */
+
+        int menuAdm, menuCliAuth, codProduto, menuAdminAuth, menuInicial, menuCli, qtdEstoque, codigo, tipo;
+        String nome, telefone, cpf, senha, marca, descricao;
         double preco;
         boolean login;
         Produto produto;
+        FactoryProduto factory = new FactoryProduto();
 
 
         do{
@@ -51,6 +105,7 @@ public class Aplicacao {
                                 System.out.print("Senha: "); senha = in.nextLine();
                                 login = fachada.loginCliente(cpf, senha);
                                 if(login){
+                                    System.out.println("==> Logado..");
                                     do{
                                         menuCliAuth = menuClienteAutenticado();
                                         switch(menuCliAuth){
@@ -66,9 +121,13 @@ public class Aplicacao {
                                                 percorreLista(fachada.visualizarProdutos());
                                                 break;
                                             case 2:
-                                                System.out.print("Código do produto: ");
-                                                codProduto = in.nextInt();
-                                                fachada.adicionarProdutoCarrinho(codProduto);
+                                                try{
+                                                    System.out.print("Código do produto: ");
+                                                    codProduto = in.nextInt();
+                                                    fachada.adicionarProdutoCarrinho(codProduto);
+                                                } catch (IllegalArgumentException err) {
+                                                    System.out.println("==> ERRO: " + err);
+                                                }
                                                 break;
                                             case 3:
                                                 System.out.print("Código para remoção: ");
@@ -101,10 +160,9 @@ public class Aplicacao {
                                 System.out.print("Telefone: "); telefone = in.nextLine();
                                 System.out.print("Senha: "); senha = in.nextLine();
                                 Date data = new Date();
-
                                 ClienteUsuario novoCliente = new ClienteUsuario(cpf, nome, telefone, senha, data);
                                 fachada.cadastrarCliente(novoCliente);
-                                System.out.println("Usuário "+novoCliente.getNome()+" cadastrado!");
+                                System.out.println("Usuário "+ novoCliente.getNome()+" cadastrado!");
                                 break;
                             case 3:
                                 System.out.println("Saindo da área do cliente!");
@@ -136,6 +194,7 @@ public class Aplicacao {
                                             + "3. Remover produto. \n"
                                             + "4. Visualizar catálogo. \n"
                                             + "5. Sair. \n"
+                    String nome, String marca, String descricao, double preco, int qtdEstoque
                                             */
                                             case 1:
                                                 System.out.println("Cadastrar novo Produto");
@@ -149,9 +208,13 @@ public class Aplicacao {
                                                 preco = in.nextDouble();
                                                 System.out.print("Qtd em estoque: ");
                                                 qtdEstoque = in.nextInt();
-                                                produto = new Produto(nome,marca,descricao,preco,qtdEstoque);
-                                                System.out.println(fachada.cadastrarProduto(produto));
-                                                System.out.println("Produto: "+produto.toString() + "cadastrado");
+                                                System.out.println("==> Codigo do produto: ");
+                                                codigo = in.nextInt();
+                                                System.out.println("==> Tipo do produto: ");
+                                                tipo = in.nextInt();
+                                                produto = new Produto(nome,marca,descricao,preco,qtdEstoque,1, 2);
+                                                fachada.cadastrarProduto(produto);
+                                                System.out.println("Produto: "+ produto.toString() + "cadastrado");
                                                 break;
                                             case 2:
                                                 System.out.print("Código do produto: ");
@@ -162,12 +225,16 @@ public class Aplicacao {
                                                 System.out.println("Produto atualizado");
                                                 break;
                                             case 3:
-                                                System.out.println("Remover produto");
-                                                System.out.print("Código do produto: ");
-                                                codProduto = in.nextInt();
-                                                fachada.removerProduto(codProduto);
-                                                System.out.println("Produto removido.");
-                                                break;
+                                                try {
+                                                    System.out.println("Remover produto");
+                                                    System.out.print("Código do produto: ");
+                                                    codProduto = in.nextInt();
+                                                    fachada.removerProduto(codProduto);
+                                                    System.out.println("Produto removido.");
+                                                    break;
+                                                } catch (InputMismatchException err) {
+                                                    System.out.println("==> Erro: " + err);
+                                                }
                                             case 4:
                                                 percorreLista(fachada.visualizarProdutos());
                                                 break;
@@ -291,13 +358,22 @@ public class Aplicacao {
         return opcao;
     }
 
-    public static void percorreLista(List l) {
-        if(l.isEmpty()){
-            System.out.println("Lista vazia");
+    public static void percorreLista(List l) throws NullPointerException {
+
+        try {
+            if (l != null ) {
+                l.forEach((a) -> {
+                    System.out.println(a);
+                });
+            }
+
+            if (l.isEmpty()) {
+                System.out.println("==> Lista Vazia");
+            }
+
+        } catch (NullPointerException error) {
+            System.out.println("==> Lista Nula");
         }
-        l.forEach((a) -> {
-            System.out.println(a);
-        });
     }
 
     public static String banner() {
@@ -334,4 +410,5 @@ public class Aplicacao {
                 "                                        ==( |          |\n" +
                 "                                             (o)====(o)";
     }
+
 }

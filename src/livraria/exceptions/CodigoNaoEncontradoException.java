@@ -1,2 +1,5 @@
-package livraria.exceptions;public class CodigoNaoEncontradoException {
+package livraria.exceptions;
+
+public class CodigoNaoEncontradoException extends Exception {
+
 }

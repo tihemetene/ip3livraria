@@ -1,5 +1,6 @@
 package livraria.model.repositorio;
 
+import livraria.exceptions.ExisteProdutoExcecao;
 import livraria.model.Produto;
 
 
@@ -12,7 +13,12 @@ public class Desconto implements Runnable {
 
     @Override
     public void run() {
-        int valorMaximo = this.repositorioProduto.listarProdutos().size();
+        int valorMaximo = 0;
+        try {
+            valorMaximo = this.repositorioProduto.listarProdutos().size();
+        } catch (ExisteProdutoExcecao existeProdutoExcecao) {
+            existeProdutoExcecao.printStackTrace();
+        }
         int numeroAleatorio = 0;
 
         do{

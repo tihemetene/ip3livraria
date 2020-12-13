@@ -3,6 +3,8 @@ import livraria.Interface.InObserver;
 import java.util.Date;
 import livraria.Interface.InSubject;
 
+import java.util.Date;
+
 public class ClienteUsuario extends Usuario implements InObserver {
     InSubject subject;
 

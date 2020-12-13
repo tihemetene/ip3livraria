@@ -1,6 +1,7 @@
 package livraria.controller;
 
 import livraria.Interface.InCliente;
+import livraria.exceptions.ExisteProdutoExcecao;
 import livraria.model.ClienteUsuario;
 import livraria.model.Produto;
 import livraria.model.repositorio.RepoCliente;
@@ -23,10 +24,11 @@ public class ClienteController {
     }
 
     public boolean login(String CPF, String senha){
+
         return this.repositorioCliente.login(CPF, senha);
     }
 
-    public List visualizarCarrinho(){
+    public List visualizarCarrinho() throws ExisteProdutoExcecao {
         return this.repositorioCliente.visualizarCarrinho();
     }
 

@@ -4,7 +4,7 @@ import livraria.Interface.InCliente;
 import livraria.model.Carrinho;
 import livraria.model.ClienteUsuario;
 import livraria.model.Produto;
-
+import livraria.exceptions.ExisteProdutoExcecao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +59,8 @@ public class RepoCliente implements InCliente {
     }
 
     @Override
-    public List visualizarCarrinho(){
+    public List visualizarCarrinho() {
+
         return this.carrinhoCompras.visualizarCarrinho();
     }
 

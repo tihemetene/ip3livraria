@@ -1,5 +1,6 @@
 package livraria.Interface;
 
+import livraria.exceptions.ExisteProdutoExcecao;
 import livraria.model.AdminUsuario;
 import livraria.model.ClienteUsuario;
 import livraria.model.Produto;
@@ -21,7 +22,7 @@ public interface InFachada {
 
     boolean alterarQuantidade(int codigo, int quantidade);
 
-    List visualizarProdutos();
+    List visualizarProdutos() throws ExisteProdutoExcecao;
 
     boolean removerProduto(int codigo);
 
@@ -31,7 +32,7 @@ public interface InFachada {
 
     boolean cadastrarProduto(Produto produto);
 
-    List visualizarCarrinho();
+    List visualizarCarrinho() throws ExisteProdutoExcecao;
 
     boolean finalizarCompra();
 

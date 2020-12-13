@@ -1,4 +1,5 @@
 package livraria.model;
+
 import java.util.Date;
 
 public class AdminUsuario extends Usuario {
@@ -10,5 +11,4 @@ public class AdminUsuario extends Usuario {
     @Override
     public String toString() {
         return "CPF: " +this.CPF+ ", Nome: " +this.nome+ ", Telefone: " +this.telefone+ ", Data de ingressão/inscrição: "+this.data;
-    }
-}
+    }}

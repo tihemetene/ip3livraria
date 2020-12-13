@@ -7,141 +7,114 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Produto implements InSubject {
-        private int codigo;
-        private String ISBN;
-        private String nome;
-        private String marca;
-        private String descricao;
-        private String editora;
-        private int volume;
-        private double preco;
-        private int qtdEstoque;
-        List <InObserver> listObservers;
+    protected int codigo;
+    protected String nome;
+    protected String descricao;
+    protected String editora;
+    protected int tipo;
+    protected double preco;
+    protected int qtdEstoque;
+    List <InObserver> listObservers;
 
-        public Produto(String nome, String marca, String descricao, double preco, int qtdEstoque) {
-            this.nome = nome;
-            this.marca = marca;
-            this.descricao = descricao;
-            this.preco = preco;
-            this.qtdEstoque = qtdEstoque;
-            this.listObservers = new ArrayList();
 
-        }
-
-    public Produto(String nome, int volume, String editora, String marca, String descricao, double preco, int qtdEstoque, String ISBN) {
+    public Produto(String nome, String editora, String descricao, double preco, int qtdEstoque, int codigo, int tipo) {
         this.nome = nome;
-        this.volume = volume;
-        this.marca = marca;
         this.descricao = descricao;
         this.preco = preco;
         this.qtdEstoque = qtdEstoque;
         this.listObservers = new ArrayList();
-        this.ISBN = ISBN;
+        this.codigo = codigo;
         this.editora = editora;
+        this.tipo = tipo;
 
 
     }
 
-    public int getVolume() {
-        return volume;
+
+    public int getCodigo() {
+        return this.codigo;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setCod(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getEditora() {
-        return editora;
+        return this.editora;
     }
 
     public void setEditora(String editora) {
         this.editora = editora;
     }
 
-    public int getCodigo() {
-            return this.codigo;
-        }
+    public String getNome() {
+        return nome;
+    }
 
-        public void setCodigo(int codigo) {
-            this.codigo = codigo;
-        }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-        public String getNome() {
-            return nome;
-        }
+    public String getDescricao() {
+        return descricao;
+    }
 
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-        public String getMarca() {
-            return marca;
-        }
+    public double getPreco() {
+        return preco;
+    }
 
-        public void setMarca(String marca) {
-            this.marca = marca;
-        }
+    public void setPreco(double preco) {
+        this.preco = preco;
+        hasChanged();
+    }
 
-        public String getDescricao() {
-            return descricao;
-        }
+    public int getTipo() {
+        return tipo;
+    }
 
-        public void setDescricao(String descricao) {
-            this.descricao = descricao;
-        }
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
 
-        public double getPreco() {
-            return preco;
-        }
+    public void setQtdEstoque(int qtdEstoque){
+        this.qtdEstoque = qtdEstoque;
+    }
 
-        public void setPreco(double preco) {
-            this.preco = preco;
-            hasChanged();
-        }
+    public int getQtdEstoque(){
+        return this.qtdEstoque;
+    }
 
-        public void setQtdEstoque(int qtdEstoque){
-            this.qtdEstoque = qtdEstoque;
-        }
+    @Override
+    public String toString() {
+        return "Nome: " + nome + "\n" + "Tipo: " + tipo + "\n"
+                + "Descrição: " + descricao + "\n" + "Preço: " + preco + "\n";
+    }
 
-        public int getQtdEstoque(){
-            return this.qtdEstoque;
-        }
+    @Override
+    public boolean attach(InObserver observer) {
+        return this.listObservers.add(observer);
+    }
 
-        @Override
-        public String toString() {
-            return "\n" + "Código: " + codigo + "\n" + "Nome: " + nome + "\n" + "Marca: " + marca + "\n"
-                    + "Descrição: " + descricao + "\n" + "Preço: " + preco + "\n";
-        }
+    @Override
+    public boolean detach(InObserver observer) {
+        return this.listObservers.remove(observer);
+    }
 
-        @Override
-        public boolean attach(InObserver observer) {
-            return this.listObservers.add(observer);
-        }
+    @Override
+    public void hasChanged() {
+        notifyObservers();
+    }
 
-        @Override
-        public boolean detach(InObserver observer) {
-            return this.listObservers.remove(observer);
-        }
-
-        @Override
-        public void hasChanged() {
-            notifyObservers();
-        }
-
-        @Override
-        public void notifyObservers() {
-            if(!this.listObservers.isEmpty()){
-                for(int i = 0; i < this.listObservers.size(); i++){
-                    this.listObservers.get(i).update(this);
-                }
+    @Override
+    public void notifyObservers() {
+        if(!this.listObservers.isEmpty()){
+            for(int i = 0; i < this.listObservers.size(); i++){
+                this.listObservers.get(i).update(this);
             }
         }
+    }
 }

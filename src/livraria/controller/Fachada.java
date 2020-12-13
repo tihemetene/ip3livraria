@@ -1,6 +1,7 @@
 package livraria.controller;
 
 import livraria.Interface.InFachada;
+import livraria.exceptions.ExisteProdutoExcecao;
 import livraria.model.AdminUsuario;
 import livraria.model.ClienteUsuario;
 import livraria.model.Produto;
@@ -45,7 +46,7 @@ public class Fachada implements InFachada {
     }
 
     @Override
-    public List visualizarProdutos() {
+    public List visualizarProdutos() throws ExisteProdutoExcecao {
         return this.controladorProduto.listarProdutos();
     }
 
@@ -90,7 +91,7 @@ public class Fachada implements InFachada {
     }
 
     @Override
-    public List visualizarCarrinho() {
+    public List visualizarCarrinho() throws ExisteProdutoExcecao {
         return this.controladorCliente.visualizarCarrinho();
     }
 

@@ -1,6 +1,8 @@
 package livraria.controller;
 
 import livraria.Interface.InProduto;
+import livraria.exceptions.CodigoNaoEncontradoException;
+import livraria.exceptions.ExisteProdutoExcecao;
 import livraria.model.Produto;
 import livraria.model.repositorio.Desconto;
 import livraria.model.repositorio.RepoProduto;
@@ -14,37 +16,7 @@ public class ProdutoController {
     private final InProduto repositorioProduto;
 
     public ProdutoController(){
-        this.repositorioProduto = new InProduto() {
-            @Override
-            public boolean cadastrarProduto(Produto produto) {
-                return false;
-            }
-
-            @Override
-            public boolean alterarQuantidade(int codigo, int quantidade) {
-                return false;
-            }
-
-            @Override
-            public List listarProdutos() {
-                return null;
-            }
-
-            @Override
-            public boolean removerProduto(int codigo) {
-                return false;
-            }
-
-            @Override
-            public int buscarProduto(int codigo) {
-                return 0;
-            }
-
-            @Override
-            public Produto retornarProduto(int codigo) {
-                return null;
-            }
-        };
+        this.repositorioProduto = new RepoProduto();
     }
 
     public boolean cadastrarProduto(Produto produto){
@@ -55,7 +27,7 @@ public class ProdutoController {
         return this.repositorioProduto.alterarQuantidade(codigo, quantidade);
     }
 
-    public List listarProdutos(){
+    public List listarProdutos() throws ExisteProdutoExcecao {
         return this.repositorioProduto.listarProdutos();
     }
 
@@ -63,7 +35,7 @@ public class ProdutoController {
         return this.repositorioProduto.removerProduto(codigo);
     }
 
-    public int buscarProcuto(int codigo) {
+    public int buscarProcuto(int codigo) throws CodigoNaoEncontradoException {
         return this.repositorioProduto.buscarProduto(codigo);
     }
 

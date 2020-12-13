@@ -1,18 +1,30 @@
 package livraria.model.repositorio;
 
+import livraria.Interface.InProduto;
 import livraria.model.Produto;
-
+import livraria.exceptions.ExisteProdutoExcecao;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-public class RepoProduto {
+public class RepoProduto implements InProduto {
+
+
     protected List<Produto> listaProdutos = new ArrayList();
 
 
-    public boolean cadastrarProduto(Produto produto) {
-        return this.listaProdutos.add(produto);
+    public boolean cadastrarProduto(Produto produto) throws NullPointerException{
+        System.out.println("==> Produtos adicinados com sucesso... [REPOSITORIO]");
+
+        try {
+            if (produto != null ) {
+                return this.listaProdutos.add(produto);
+            }
+        } catch (NullPointerException err) {
+            System.out.println("==> NullPointerExeception [Repositorio cadastrar Produto1]");
+        }
+        return false;
     }
 
 
@@ -25,7 +37,13 @@ public class RepoProduto {
         return false;
     }
 
-    public List listarProdutos() {
+    public List listarProdutos() throws ExisteProdutoExcecao {
+
+        if (listaProdutos != null ) {
+            System.out.println("[!] Listando produtos...");
+            return Collections.unmodifiableList(listaProdutos);
+        }
+
         return Collections.unmodifiableList(listaProdutos);
     }
 

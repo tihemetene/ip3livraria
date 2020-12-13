@@ -91,7 +91,7 @@ public class Produto implements InSubject {
     @Override
     public String toString() {
         return "Nome: " + nome + "\n" + "Tipo: " + tipo + "\n"
-                + "Descrição: " + descricao + "\n" + "Preço: " + preco + "\n";
+                + "Descrição: " + descricao + "\n" + "Preço: " + preco + "\n" + " Codigo:  " + codigo;
     }
 
     @Override

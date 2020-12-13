@@ -27,8 +27,6 @@ public class ClienteController {
 
         boolean loginOk = this.repositorioCliente.login(CPF, senha);
 
-        System.out.println("==> Login STATUS:" + loginOk);
-
         if (loginOk) {
             return true;
         } else {

@@ -50,22 +50,29 @@ public class Aplicacao {
          *
          *
          * */
+
+        System.out.println("[==> [TESTE CADASTRO FUNCIONARIO] <==");
+
         Date d = new Date();
-        AdminUsuario user1 = new AdminUsuario("1", "admin", "1", "1", d);
+        AdminUsuario user1 = new AdminUsuario("1", "Almir..", "1", "1", d);
         fachada.cadastarAdministrador(user1);
         System.out.println("Usuário: " + user1.getNome() + " cadastrado com sucesso!");
 
-        Produto produto1 = new Produto("Livro", "Programando em Jaca", "Jaca programming", 20, 20, 1, 1);
+        System.out.println("[==> [TESTE CADASTRO PRODUTOS] <==");
+
+        Produto produto1 = new Produto("Livro", "Programando em Jaca", "Jaca programming", 40, 20, 1, 1);
         fachada.cadastrarProduto(produto1);
         System.out.println("Produto [Livro]  : " + produto1 + " Salvo com sucesso");
 
-        Produto produto2 = new Produto("Jogo", "Tray Arcs", "Joguinho", 20, 20, 2, 2);
-        fachada.cadastrarProduto(produto1);
-        System.out.println("Produto [Jogo]: " + produto1 + " Salvo com sucesso");
+        Produto produto2 = new Produto("Jogo", "Tray Arcs", "Joguinho", 20, 30, 2, 2);
+        fachada.cadastrarProduto(produto2);
+        System.out.println("Produto [Jogo]: " + produto2 + " Salvo com sucesso");
 
-        ClienteUsuario cli = new ClienteUsuario("1", "Cliente", "1", "1", d);
+        System.out.println("[==> [TESTE CADASTRO CLIENTE] <==");
+
+        ClienteUsuario cli = new ClienteUsuario("1", "Thais", "1", "1", d);
         System.out.println("Usuário " + cli.getNome()+ " cadastrado!");
-        ClienteUsuario cli2 = new ClienteUsuario("2", "Cliente2", "2", "2", d);
+        ClienteUsuario cli2 = new ClienteUsuario("2", "Felipe", "2", "2", d);
         System.out.println("Usuário " + cli2.getNome()+ " cadastrado!");
         fachada.cadastrarCliente(cli);
         fachada.cadastrarCliente(cli2);

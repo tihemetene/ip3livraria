@@ -43,6 +43,7 @@ public class ProdutoController {
         return this.repositorioProduto.retornarProduto(codigo);
     }
 
+
     public boolean aplicarDescontoAleatorio(){
         Desconto descontoProduto = new Desconto((RepoProduto)this.repositorioProduto);
         Thread concorrencia = new Thread(descontoProduto);

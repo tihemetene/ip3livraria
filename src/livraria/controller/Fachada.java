@@ -70,6 +70,7 @@ public class Fachada implements InFachada {
         }
     }
 
+
     @Override
     public boolean removerItemCarrinho(int codigo) {
         Produto produto = this.controladorProduto.retornarProduto(codigo);

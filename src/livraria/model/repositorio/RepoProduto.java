@@ -15,8 +15,6 @@ public class RepoProduto implements InProduto {
 
 
     public boolean cadastrarProduto(Produto produto) throws NullPointerException{
-        System.out.println("==> Produtos adicinados com sucesso... [REPOSITORIO]");
-
         try {
             if (produto != null ) {
                 return this.listaProdutos.add(produto);
@@ -40,10 +38,9 @@ public class RepoProduto implements InProduto {
     public List listarProdutos() throws ExisteProdutoExcecao {
 
         if (listaProdutos != null ) {
-            System.out.println("[!] Listando produtos...");
+            System.out.println();
             return Collections.unmodifiableList(listaProdutos);
         }
-
         return Collections.unmodifiableList(listaProdutos);
     }
 
@@ -74,4 +71,5 @@ public class RepoProduto implements InProduto {
             return null;
         }
     }
+
 }

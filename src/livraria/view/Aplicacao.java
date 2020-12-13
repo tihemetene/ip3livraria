@@ -65,7 +65,10 @@ public class Aplicacao {
 
         ClienteUsuario cli = new ClienteUsuario("1", "Cliente", "1", "1", d);
         System.out.println("Usuário " + cli.getNome()+ " cadastrado!");
-
+        ClienteUsuario cli2 = new ClienteUsuario("2", "Cliente2", "2", "2", d);
+        System.out.println("Usuário " + cli2.getNome()+ " cadastrado!");
+        fachada.cadastrarCliente(cli);
+        fachada.cadastrarCliente(cli2);
 
         System.out.println();
         System.out.println();

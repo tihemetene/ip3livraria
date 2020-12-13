@@ -25,7 +25,15 @@ public class ClienteController {
 
     public boolean login(String CPF, String senha){
 
-        return this.repositorioCliente.login(CPF, senha);
+        boolean loginOk = this.repositorioCliente.login(CPF, senha);
+
+        System.out.println("==> Login STATUS:" + loginOk);
+
+        if (loginOk) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public List visualizarCarrinho() throws ExisteProdutoExcecao {

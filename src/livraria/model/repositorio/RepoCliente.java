@@ -34,19 +34,28 @@ public class RepoCliente implements InCliente {
 
     @Override
     public int buscar(String CPF){
+        System.out.println("==> Debug: " + CPF);
+
+        if (this.listaClientes.isEmpty()) {
+            System.out.println("==> Lista Vazia");
+            return -1;
+        }
         for(int i = 0; i < this.listaClientes.size(); i++){
             if(this.listaClientes.get(i).getCPF().compareTo(CPF) == 0){
+                System.out.println("==> Achou: " + CPF);
                 return i;
             }
         }
+        System.out.println("==> Não Achou: " + CPF);
         return -1;
     }
 
     @Override
     public boolean login(String CPF, String senha) {
+        System.out.println("==> Efetuando login: [RepoCliente]");
         if(this.buscar(CPF) != -1){
+            System.out.println("==> Achou: " + CPF);
             int index = this.buscar(CPF);
-
             if(this.listaClientes.get(index).getSenha().equalsIgnoreCase(senha)){
                 this.clienteLogado = this.listaClientes.get(index);
                 this.carrinhoCompras = new Carrinho();

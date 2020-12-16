@@ -43,79 +43,77 @@ public class Validaçoes {
             }
             return false;
         }
-        public static boolean verificarCPF(String cpf) {
+       
+        
+            public static  boolean verificarCPF(String valor) {
+                boolean D1 = verificarD1(valor);
+                boolean D2 = verificarD2(valor);
+                System.out.println("D1" + D1);
+                System.out.println("D2" + D2);
 
-            boolean D1 = verificarD1(cpf);
-            if (D1) {
-                boolean D2 = verificarD2(cpf);
-                if (D2) {
+                if (D1 && D2) {
                     return true;
                 }
                 return false;
             }
-            return false;
-        }
-
+        
         private static boolean verificarD1(String valor) {
-            int v = 0;//usado para capturar o valor de b,é torna-lo int com a funçao de ser usado para encontrar um valor final
-            int soma = 0;//valor final encontrado para ser usado na verificaçao
-            char b;//usado pra caminhar pelo vetor
-            if(valor.length()==11){
-            for (int a = 0; a <= (valor.length() - 2); a++) {
-                b = valor.charAt(a);
-
-                v = Integer.parseInt(String.valueOf(b));
-                for (int nati = 10; nati <= 2; nati--) {
-                    soma = v * nati;
-
+                int v = 0;
+                int soma = 0;
+                char b;
+                int nati = 10;
+                if (valor.length() == 11) {
+                    for (int a = 0; a <= 8; a++) {
+                        b = valor.charAt(a);
+                        v = Integer.parseInt(String.valueOf(b));
+                        soma = soma + (v * nati);
+                        nati--;
+                    }
+                    int resultado = (soma * 10) % 11;//LEMBRAR Q % é o resto
+                    if (resultado == 10) {
+                        resultado = 0;
+                    }
+                    char n9 = valor.charAt(9);//pega na 9 posiçao
+                    int v9 = Integer.parseInt(String.valueOf(n9));
+                    if (v9 == resultado) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
+                return false;
             }
-            int resultado = (soma * 10) % 11;//LEMBRAR Q % é o resto
-            if (resultado == 10) {
-                resultado = 0;//isto acontece por 10 ocupar duas casas,contudo apenas é possivel ocupar uma
-                //contando so de 0-9
 
-            }
-            char n9 = valor.charAt(9);//pega na 9 posiçao
-            int v9 = Integer.parseInt(String.valueOf(n9));
-            if (v9 == resultado) {
-                //ve se tem o valor esperado para o primerio digito verificador do cpf
-                return true;
-            }
-          else{  return false;}}
-            //se o cpf for com menos numero  que o ideal
-            return false;
-        }
+                    private static boolean verificarD2(String valor) {
 
+                        int v = 0;
+                        int soma = 0;
+                        char b;
+                        int nati = 11;
+                        if (valor.length() == 11) {
+                            for (int a = 0; a <= 9; a++) {
+                                b = valor.charAt(a);
+                                v = Integer.parseInt(String.valueOf(b));
+                                soma = soma + (v * nati);
+                                nati--;
 
-        private static boolean verificarD2(String valor) {
+                            }
+                            int resultado = (soma * 10) % 11;
+                            if (resultado == 10) {
+                                resultado = 0;
+                            }
+                            char n9 = valor.charAt(10);
+                            int v9 = Integer.parseInt(String.valueOf(n9));
+                            if (v9 == resultado) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                        //se for menor do que o cpf tem q ser
+                        return false;
+                    }
 
-            int v = 0;
-            int soma = 0;
-            char b;
-            if(valor.length()==11){
-            for (int a = 0; a <= (valor.length() - 1); a++) {
-                b = valor.charAt(a);
-
-                v = Integer.parseInt(String.valueOf(b));
-                for (int nati = 11; nati <= 2; nati--) {//essa parte mais difernete do D1
-                    soma = v * nati;
-
-                }
-            }
-            int resultado = (soma * 10) % 11;
-            if (resultado == 10) {
-                resultado = 0;
-            }
-            char n9 = valor.charAt(9);
-            int v9 = Integer.parseInt(String.valueOf(n9));
-            if (v9 == resultado) {
-                return true;
-            }
-            else{return false;}}
-            //se for menor do que o cpf tem q ser
-            return false;
-        }
 
 
         public static String verificarNome(String nome) {

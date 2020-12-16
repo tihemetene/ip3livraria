@@ -171,11 +171,11 @@ public class Aplicacao {
                                 System.out.print("Nome: "); nome = in.nextLine();
                                     nome = Validaçoes.verificarNome(nome);
                                     if (nome == null) {
-                                        throw new Nomeinvalidoexcecao("este nome nao é aceito") ;
+                                        throw new Nomeinvalidoexcecao("Este nome nao é aceito!") ;
                                     }
                                 System.out.print("CPF: "); cpf = in.nextLine();
                                     if (!Validaçoes.verificarCPF(cpf)) {
-                                        throw new CPFinvalidoExcecao("este cpf esta invalido") ;
+                                        throw new CPFinvalidoExcecao("Este cpf está invalido!") ;
                                     }
 
                                 System.out.print("Telefone: "); telefone = in.nextLine();

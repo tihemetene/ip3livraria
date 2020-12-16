@@ -6,10 +6,7 @@ import livraria.exceptions.ExisteProdutoExcecao;
 import livraria.exceptions.Nomeinvalidoexcecao;
 import livraria.exceptions.CPFinvalidoExcecao;
 import livraria.exceptions.Validaçoes;
-import livraria.model.ClienteUsuario;
-import livraria.model.FactoryProduto;
-import livraria.model.Produto;
-import livraria.model.AdminUsuario;
+import livraria.model.*;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -63,11 +60,11 @@ public class Aplicacao {
 
         System.out.println("[==> [TESTE CADASTRO PRODUTOS] <==");
 
-        Produto produto1 = new Produto("Livro", "Programando em Jaca", "Jaca programming", 40, 20, 1, 1);
+        Produto produto1 = new Produto("Livro", "Programando em Jaca", 30.00, 40, 20, 1);
         fachada.cadastrarProduto(produto1);
         System.out.println("Produto [Livro]  : " + produto1 + " Salvo com sucesso");
 
-        Produto produto2 = new Produto("Jogo", "Tray Arcs", "Joguinho", 20, 30, 2, 2);
+        Produto produto2 = new Produto("Jogo", "Tray Arcs", 59.99, 20, 30, 2);
         fachada.cadastrarProduto(produto2);
         System.out.println("Produto [Jogo]: " + produto2 + " Salvo com sucesso");
 
@@ -186,14 +183,12 @@ public class Aplicacao {
                                 System.out.print("Senha: "); senha = in.nextLine();
                                 Date data = new Date();
                                 ClienteUsuario novoCliente = new ClienteUsuario(cpf, nome, telefone, senha, data);
-                                System.out.println("Usuário "+ novoCliente.getNome()+" cadastrado!");
+                                System.out.println("Usuário "+ novoCliente.getNome()+" cadastrado em: " +novoCliente.getData());
                                 fachada.cadastrarCliente(novoCliente);
                                 }catch (CPFinvalidoExcecao err) {
                                     System.out.println(err.getMessage());
                             }
                                 catch(Nomeinvalidoexcecao err){ System.out.println(err.getMessage());}
-
-
                                 break;
                             case 3:
                                 System.out.println("Saindo da área do cliente!");
@@ -232,8 +227,6 @@ public class Aplicacao {
                                                 System.out.println("Cadastrar novo Produto");
                                                 System.out.print("Nome do produto: ");
                                                 nome = in.nextLine();
-                                                System.out.print("Marca do produto: ");
-                                                marca = in.nextLine();
                                                 System.out.print("Descricao do produto: ");
                                                 descricao = in.nextLine();
                                                 System.out.print("Preço do produto: ");
@@ -244,8 +237,8 @@ public class Aplicacao {
                                                 codigo = in.nextInt();
                                                 System.out.println("==> Tipo do produto: ");
                                                 tipo = in.nextInt();
-                                                produto = new Produto(nome,marca,descricao,preco,qtdEstoque,1, 2);
-                                                fachada.cadastrarProduto(produto);
+                                                produto = factory.getProduto(nome,descricao,preco,qtdEstoque,1, 2);
+                                                fachada.cadastrarProduto(factory.getProduto(nome,descricao,preco,qtdEstoque,1, 2));
                                                 System.out.println("Produto: "+ produto.toString() + "cadastrado");
                                         }catch (NullPointerException err){
                                                     System.out.println(err.getMessage());

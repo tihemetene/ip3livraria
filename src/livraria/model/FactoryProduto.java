@@ -8,12 +8,12 @@ public class FactoryProduto {
     Produto produto;
 
 
-    public Produto getProduto(String nome, String editora, String descricao, double preco, int qtdEstoque, int  codigo, int tipo){
+    public Produto getProduto(String nome, String descricao, double preco, int qtdEstoque, int  codigo, int tipo){
 
         if(tipo== 1){
-            return new Livro (nome, editora ,descricao, preco, qtdEstoque, codigo,tipo);
+            return new Livro (nome, descricao, preco, qtdEstoque, codigo,tipo);
         }if(tipo == 2){
-            return new Jogo (nome, editora ,descricao, preco, qtdEstoque, codigo,tipo);
+            return new Jogo (nome, descricao, preco, qtdEstoque, codigo,tipo);
         }
 
         return null;
@@ -22,7 +22,7 @@ public class FactoryProduto {
     @Override
     public String toString() {
         return "Nome: " + produto.getNome() +
-                " Editora: "+ produto.getDescricao() +
+                "Descrição: "+ produto.getDescricao() +
                 "Preço: "+ produto.getPreco() +
                 "Estoque: "+ produto.getQtdEstoque() +
                 "Codigo de Barras: "+ produto.getCodigo();

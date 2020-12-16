@@ -78,10 +78,11 @@ public class Validaçoes {
             }
             char n9 = valor.charAt(9);//pega na 9 posiçao
             int v9 = Integer.parseInt(String.valueOf(n9));
-            if (v9 == resultado) {//ve se tem o valor esperado para o primerio digito verificador do cpf
+            if (v9 == resultado) {
+                //ve se tem o valor esperado para o primerio digito verificador do cpf
                 return true;
             }
-            return false;}
+          else{  return false;}}
             //se o cpf for com menos numero  que o ideal
             return false;
         }
@@ -111,11 +112,10 @@ public class Validaçoes {
             if (v9 == resultado) {
                 return true;
             }
-            return false;}
+            else{return false;}}
             //se for menor do que o cpf tem q ser
             return false;
         }
-
 
 
         public static String verificarNome(String nome) {
